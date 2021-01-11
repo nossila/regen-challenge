@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to run
+
+1. make sure you have node version 14 or higher, if you got [nvm](https://github.com/nvm-sh/nvm) installed you can just use `nvm use`
+
+2. make sure you have [yarn](https://yarnpkg.com) installed, if not: `npm install -g yarn` 
+
+3. install dependencies with `yarn install`
+
+4. get a [Github Developers' Token](https://github.com/settings/tokens) at `Settings > Developer settings > Personal access tokens` if you don't have one you need to create one, no scopes are needed.
+
+5. edit file `.env` and set the variable `REACT_APP_GITHUB_TOKEN` with the token you got in the precious step.
+
+6. run the app `yarn start`
+
 ## Available Scripts
 
 In the project directory, you can run:
