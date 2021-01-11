@@ -6,7 +6,7 @@ const fragmentQuery = graphql`
       count: { type: "Int", defaultValue: 30 }
       cursor: { type: "String" }
     ) {
-    issues(first: $count, after: $cursor)  @connection(key: "Repository_issues") {
+    issues(first: $count, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC})  @connection(key: "Repository_issues") {
       totalCount
       edges {
         node {

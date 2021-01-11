@@ -41,13 +41,13 @@ query RepositoryQuery(
 }
 
 fragment IssueListItem on Issue {
+  number
   title
-  closed
-  resourcePath
+  url
 }
 
 fragment IssuesList_repository_34DJfr on Repository {
-  issues(first: $issuesCount) {
+  issues(first: $issuesCount, orderBy: {field: CREATED_AT, direction: DESC}) {
     totalCount
     edges {
       node {
@@ -105,6 +105,14 @@ v5 = [
     "kind": "Variable",
     "name": "first",
     "variableName": "issuesCount"
+  },
+  {
+    "kind": "Literal",
+    "name": "orderBy",
+    "value": {
+      "direction": "DESC",
+      "field": "CREATED_AT"
+    }
   }
 ],
 v6 = {
@@ -207,6 +215,13 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
+                        "name": "number",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
                         "name": "title",
                         "storageKey": null
                       },
@@ -214,14 +229,7 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "closed",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "resourcePath",
+                        "name": "url",
                         "storageKey": null
                       },
                       {
@@ -275,7 +283,9 @@ return {
           {
             "alias": null,
             "args": (v5/*: any*/),
-            "filters": null,
+            "filters": [
+              "orderBy"
+            ],
             "handle": "connection",
             "key": "Repository_issues",
             "kind": "LinkedHandle",
@@ -288,12 +298,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bf8666dab5beabedaa48725dee3fb2b2",
+    "cacheID": "9eba05c116b9b7c040a4df3f05377e16",
     "id": null,
     "metadata": {},
     "name": "RepositoryQuery",
     "operationKind": "query",
-    "text": "query RepositoryQuery(\n  $name: String!\n  $owner: String!\n  $issuesCount: Int!\n) {\n  repository(name: $name, owner: $owner) {\n    name\n    ...IssuesList_repository_34DJfr\n    id\n  }\n}\n\nfragment IssueListItem on Issue {\n  title\n  closed\n  resourcePath\n}\n\nfragment IssuesList_repository_34DJfr on Repository {\n  issues(first: $issuesCount) {\n    totalCount\n    edges {\n      node {\n        id\n        ...IssueListItem\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query RepositoryQuery(\n  $name: String!\n  $owner: String!\n  $issuesCount: Int!\n) {\n  repository(name: $name, owner: $owner) {\n    name\n    ...IssuesList_repository_34DJfr\n    id\n  }\n}\n\nfragment IssueListItem on Issue {\n  number\n  title\n  url\n}\n\nfragment IssuesList_repository_34DJfr on Repository {\n  issues(first: $issuesCount, orderBy: {field: CREATED_AT, direction: DESC}) {\n    totalCount\n    edges {\n      node {\n        id\n        ...IssueListItem\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

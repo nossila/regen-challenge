@@ -63,7 +63,16 @@ const node/*: ReaderFragment*/ = {
   "selections": [
     {
       "alias": "issues",
-      "args": null,
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "orderBy",
+          "value": {
+            "direction": "DESC",
+            "field": "CREATED_AT"
+          }
+        }
+      ],
       "concreteType": "IssueConnection",
       "kind": "LinkedField",
       "name": "__Repository_issues_connection",
@@ -150,13 +159,13 @@ const node/*: ReaderFragment*/ = {
           "storageKey": null
         }
       ],
-      "storageKey": null
+      "storageKey": "__Repository_issues_connection(orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
     }
   ],
   "type": "Repository",
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = '6d7c4a140be148ab7b13700d8c664b5c';
+(node/*: any*/).hash = '524fc854c820ea35883a1fece6d69889';
 
 module.exports = node;

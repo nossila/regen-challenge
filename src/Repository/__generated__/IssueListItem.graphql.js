@@ -12,9 +12,9 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type IssueListItem$ref: FragmentReference;
 declare export opaque type IssueListItem$fragmentType: IssueListItem$ref;
 export type IssueListItem = {|
+  +number: number,
   +title: string,
-  +closed: boolean,
-  +resourcePath: any,
+  +url: any,
   +$refType: IssueListItem$ref,
 |};
 export type IssueListItem$data = IssueListItem;
@@ -36,6 +36,13 @@ const node/*: ReaderFragment*/ = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
+      "name": "number",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
       "name": "title",
       "storageKey": null
     },
@@ -43,14 +50,7 @@ const node/*: ReaderFragment*/ = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "closed",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "resourcePath",
+      "name": "url",
       "storageKey": null
     }
   ],
@@ -58,6 +58,6 @@ const node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = '0c00dfc2c59b68cf6bbfe2813bcfa70f';
+(node/*: any*/).hash = '8a167cc7e0fc0b74b1a1af30ea9b2149';
 
 module.exports = node;

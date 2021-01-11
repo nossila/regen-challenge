@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import {createPaginationContainer} from "react-relay";
+import {List} from "@material-ui/core";
 import IssueListItem from "./IssueListItem.js";
 import {fragmentSpec, query} from "./Issues.query.js";
+import ButtonLoading from "../components/ButtonLoading.js";
 
 function Issues({repository, relay, count}) {
   const [isLoading, setLoading] = useState(false);
@@ -21,20 +23,23 @@ function Issues({repository, relay, count}) {
 
   return <div>
     <h2>Total issues found: {repository.issues.totalCount}</h2>
-    <ul>
+    <List>
       {repository.issues.edges.map(issue => (
         <IssueListItem
           key={issue.node.id}
           issue={issue.node}
         />
       ))}
-    </ul>
-    <button
-      disabled={!hasMore}
+    </List>
+    <ButtonLoading
+      variant="outlined"
+      color="primary"
+      disabled={!hasMore || isLoading}
       onClick={handleLoadMore}
+			isLoading={isLoading}
     >
-      {isLoading ? "loading..." : !hasMore ? "the end!" : "load more"}
-    </button>
+      {!hasMore ? "the end!" : "load more"}
+    </ButtonLoading>
   </div>;
 }
 
